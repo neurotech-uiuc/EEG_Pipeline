@@ -1,4 +1,4 @@
-import ML.NeuralNetwork
+import NeuralNetwork
 
 def train(train_set,train_labels, dev_set, dev_labels):
    
@@ -11,6 +11,4 @@ def train(train_set,train_labels, dev_set, dev_labels):
     for observation, label in zip(train_set, train_labels):
         net.step(observation, label)
     
-
-
 
