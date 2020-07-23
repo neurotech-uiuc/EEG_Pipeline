@@ -1,0 +1,2 @@
+language = "python3"
+run = "echo 'run a command (python: fourierPlot.py)'"
