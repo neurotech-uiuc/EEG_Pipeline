@@ -46,8 +46,8 @@ def main(argv):
         # print("Wait for prompt -- seconds elapsed:" , datetime.datetime.now() - start)
         secsToWaitBeforePromp = random.randint(5, 8)
         time.sleep(secsToWaitBeforePromp)
-        print("PERFORM ACTION NOW -- elapsed:", datetime.datetime.now() - start)
         beepy.beep(sound=1) # integer as argument
+        print("PERFORM ACTION NOW -- elapsed:", datetime.datetime.now() - start)
 
         outputLabels.append(str(datetime.datetime.now().time()))
         time.sleep(3) #  wait 3 seconds to perform action
