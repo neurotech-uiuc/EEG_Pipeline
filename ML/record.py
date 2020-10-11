@@ -2,13 +2,14 @@ import time
 import datetime
 import sys
 import random
+import beepy as beepy
 
 
 outputLabels = []
 
-def writeToFile():
+def writeToFile(fileName):
     print("ATTEMPT WRITING TO FILE...")
-    with open('actionTimeStamps.txt', 'w') as f:
+    with open(fileName, 'w') as f:
         for item in outputLabels:
             f.write("%s\n" % item)
     print("WROTE TO FILE AND EXITED")
@@ -24,12 +25,20 @@ signal.signal(signal.SIGINT, signal_handler)
 def main(argv):
 
     seconds = 120
+    fileName = "recording.txt"
+
     # parse second
     if (argv[0] == "--sec"):
         seconds = int(argv[1])
         print("RECORDING FOR " + str(seconds) + " SECONDS")
     else:
         print("RECORDING FOR DEFAULT" + str(seconds) + " SECONDS")
+
+    if (argv[2] == "--file"):
+        fileName = argv[3]
+        print("Saving at: " + fileName)
+    
+
     start = datetime.datetime.now()
 
     while (datetime.datetime.now() - start).seconds < seconds:
@@ -38,13 +47,15 @@ def main(argv):
         secsToWaitBeforePromp = random.randint(5, 8)
         time.sleep(secsToWaitBeforePromp)
         print("PERFORM ACTION NOW -- elapsed:", datetime.datetime.now() - start)
+        beepy.beep(sound=1) # integer as argument
+
         outputLabels.append(str(datetime.datetime.now().time()))
         time.sleep(3) #  wait 3 seconds to perform action
 
 
         
         
-    writeToFile()
+    writeToFile(fileName)
 
 if __name__ == "__main__":
     try:
